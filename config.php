@@ -1,11 +1,25 @@
 <?php
-session_start();
+require 'environment.php';
 
-global $pdo;
+$config = array();
+if(ENVIRONMENT == 'development') {
+	define("BASE_URL", "http://localhost/classificados-simples/");
+	$config['dbname'] = 'classificados';
+	$config['host'] = 'localhost';
+	$config['dbuser'] = 'root';
+	$config['dbpass'] = '';
+} else {
+	define("BASE_URL", "http://meusite.com.br/");
+	$config['dbname'] = 'classificados';
+	$config['host'] = 'localhost';
+	$config['dbuser'] = 'root';
+	$config['dbpass'] = '';
+}
+
+global $db;
 try {
-	$pdo = new PDO("mysql:dbname=classificados;host=localhost", "root", "root");
+	$db = new PDO("mysql:dbname=".$config['dbname'].";host=".$config['host'], $config['dbuser'], $config['dbpass']);
 } catch(PDOException $e) {
-	echo "FALHOU: ".$e->getMessage();
+	echo "ERRO: ".$e->getMessage();
 	exit;
 }
-?>
