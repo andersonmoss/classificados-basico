@@ -3,7 +3,7 @@ require 'environment.php';
 
 $config = array();
 if(ENVIRONMENT == 'development') {
-	define("BASE_URL", "http://localhost/classificados-simples/");
+	define("BASE_URL", "http://localhost/estrutura-mvc-php/");
 	$config['dbname'] = 'classificados';
 	$config['host'] = 'localhost';
 	$config['dbuser'] = 'root';
